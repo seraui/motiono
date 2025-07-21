@@ -134,3 +134,48 @@ function App() {
 
 export default App;
 ```
+
+## Wavy Text
+```tsx
+import { motiono } from "motiono";
+
+function WavyText({ children }) {
+  const text =
+    typeof children === "string" ? children : children?.props?.children ?? "";
+
+  return (
+    <section
+      style={{
+        padding: "4rem",
+        fontSize: "3rem",
+        fontWeight: 700,
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
+      {text.split("").map((char, index) => (
+        <motiono.span
+          key={index}
+          from={{ y: 0 }}
+          to={{ y: -15 }}
+          duration={0.6}
+          repeat={-1}
+          yoyo={true}
+          ease="sine.inOut"
+          delay={index * 0.06}
+          style={{ display: "inline-block", whiteSpace: "pre" }}
+        >
+          {char}
+        </motiono.span>
+      ))}
+    </section>
+  );
+}
+
+function App() {
+  return <WavyText>Wave your creativity 🌊</WavyText>;
+}
+
+export default App;
+```
+
