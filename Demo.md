@@ -275,3 +275,70 @@ export default function SmoothSpringsText() {
 }
 ```
 
+## MindBlower Text
+```tsx
+// MindBlower.jsx
+import React, { useEffect, useRef } from "react";
+import { motiono, gsap } from "motiono";
+
+function MindBlower({ children = "Motiono is 🔥" }) {
+  const ref = useRef();
+  const charsRef = useRef([]);
+
+  useEffect(() => {
+    charsRef.current = ref.current.querySelectorAll("span");
+    gsap.set(charsRef.current, { opacity: 0, y: 100, rotateX: -90 });
+
+    gsap
+      .timeline({ delay: 0.3 })
+      .to(charsRef.current, {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.07,
+        ease: "elastic.out(1, 0.6)",
+      })
+      .to(
+        charsRef.current,
+        {
+          color: "#ff00ff",
+          textShadow: "0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff",
+          stagger: 0.05,
+          duration: 0.4,
+        },
+        "-=0.5"
+      );
+  }, []);
+
+  return (
+    <motiono.h1
+      ref={ref}
+      style={{
+        fontSize: "clamp(2.5rem, 6vw + 1rem, 6rem)",
+        fontWeight: 900,
+        lineHeight: 1.1,
+        letterSpacing: "-0.03em",
+        perspective: 1000,
+      }}
+    >
+      {children.split("").map((char, i) => (
+        <span
+          key={i}
+          style={{ display: "inline-block", willChange: "transform" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </motiono.h1>
+  );
+}
+
+export default function App() {
+  return (
+    <main style={{ display: "grid", placeItems: "center", minHeight: "100vh" }}>
+      <MindBlower>The future of web animation is here.</MindBlower>
+    </main>
+  );
+}
+```
