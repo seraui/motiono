@@ -27,3 +27,36 @@ export default function Hero() {
   );
 }
 ```
+
+## Scale In Text
+
+```tsx
+// ScaleInText.jsx
+import { motiono } from "motiono";
+
+const text = "Scale In with Motiono!";
+const letters = text.split("");
+
+export default function ScaleInText() {
+  return (
+    <section style={{ padding: "4rem", fontSize: "3rem", fontWeight: 700 }}>
+      <motiono.h1
+        style={{ display: "flex", gap: "0.1em", justifyContent: "center" }}
+      >
+        {letters.map((char, i) => (
+          <motiono.span
+            key={i}
+            from={{ scale: 0, opacity: 0 }}
+            to={{ scale: 1, opacity: 1 }}
+            duration={0.7}
+            ease="elastic.out(1.2, 0.75)"
+            delay={0.1 + i * 0.05} // 50 ms stagger per char
+          >
+            {char === " " ? "\u00A0" : char}
+          </motiono.span>
+        ))}
+      </motiono.h1>
+    </section>
+  );
+}
+```
