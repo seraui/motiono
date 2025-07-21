@@ -1,0 +1,26 @@
+{
+  "name": "motiono",
+  "version": "0.12.0",
+  "description": "React component for GSAP animations",
+  "main": "dist/motiono.js",
+  "types": "dist/motiono.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "gsap",
+    "animation",
+    "react",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.13.0"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.13.0"
+  }
+}
