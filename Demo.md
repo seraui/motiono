@@ -179,3 +179,60 @@ function App() {
 export default App;
 ```
 
+# TextLoader 
+```tsx
+// TextLoader.jsx
+import { motiono } from "motiono";
+import { useEffect, useState } from "react";
+
+/**
+ * TextLoader
+ * @param {string[]} messages  - Array of messages to cycle through
+ * @param {number}   interval  - Milliseconds between message changes (default 2000)
+ * @param {string}   direction - "vertical" (default) | "horizontal"
+ */
+export default function TextLoader({
+  messages = ["Loading…", "Still working…", "Almost there…"],
+  interval = 2000,
+  direction = "vertical",
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % messages.length);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [messages, interval]);
+
+  const isHorizontal = direction === "horizontal";
+  const axis = isHorizontal ? "x" : "y";
+  const dist = isHorizontal ? 30 : 20; // px
+
+  return (
+    <section
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "3rem",
+        fontSize: "1.125rem",
+        fontWeight: 600,
+        overflow: "hidden",
+      }}
+    >
+      <motiono.div
+        key={index} // triggers re-animation on change
+        from={{ opacity: 0, [axis]: dist }}
+        to={{ opacity: 1, [axis]: 0 }}
+        exit={{ opacity: 0, [axis]: -dist }}
+        transition={{ duration: 0.5, ease: "power2.out" }}
+        style={{ position: "absolute" }}
+      >
+        {messages[index]}
+      </motiono.div>
+    </section>
+  );
+}
+```
+
