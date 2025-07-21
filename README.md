@@ -4,8 +4,7 @@ A powerful React motion library that brings GSAP animations to React components 
 
 ## Features
 
-![Uploading ezgif-51bb9f1cd06dee.gif…]()
-
+![ezgif-51bb9f1cd06dee](https://github.com/user-attachments/assets/46e7bdd6-d44d-4361-acef-c89a87bbaa54)
 
 - 🚀 **Easy to use**: Simple props-based API for GSAP animations
 - 🎯 **All HTML elements**: Pre-built motion components for every HTML element
