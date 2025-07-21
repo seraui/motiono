@@ -61,7 +61,7 @@ export default function ScaleInText() {
 }
 ```
 
-# Bouncy Text
+## Bouncy Text
 ```tsx
 // BouncyText.jsx
 import { motiono } from "motiono";
@@ -80,4 +80,57 @@ export default function BouncyText() {
     </section>
   );
 }
+```
+
+## Blur In Text
+```tsx
+import { motiono } from "motiono";
+
+function BlurInText({ children }) {
+  // Convert `children` to a string and split into characters
+  const text =
+    typeof children === "string" ? children : children?.props?.children ?? "";
+
+  return (
+    <section
+      style={{
+        padding: "4rem",
+        fontSize: "3rem",
+        fontWeight: 700,
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
+      {text.split("").map((char, index) => (
+        <motiono.span
+          key={index}
+          from={{ filter: "blur(12px)", opacity: 0 }}
+          to={{ filter: "blur(0px)", opacity: 1 }}
+          duration={0.6}
+          ease="power2.out"
+          delay={index * 0.02}
+          style={{ whiteSpace: "pre" }} // to preserve spaces and line breaks
+        >
+          {char}
+        </motiono.span>
+      ))}
+    </section>
+  );
+}
+
+function App() {
+  return (
+    <BlurInText>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </BlurInText>
+  );
+}
+
+export default App;
 ```
