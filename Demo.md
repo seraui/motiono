@@ -60,3 +60,24 @@ export default function ScaleInText() {
   );
 }
 ```
+
+# Bouncy Text
+```tsx
+// BouncyText.jsx
+import { motiono } from "motiono";
+
+export default function BouncyText() {
+  return (
+    <section style={{ padding: "4rem", fontSize: "3.5rem", fontWeight: 700 }}>
+      <motiono.h1
+        from={{ y: -100, opacity: 0 }}
+        to={{ y: 0, opacity: 1 }}
+        duration={0.7}
+        ease="bounce.out"
+      >
+        Bouncy Headline!
+      </motiono.h1>
+    </section>
+  );
+}
+```
