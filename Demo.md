@@ -236,3 +236,42 @@ export default function TextLoader({
 }
 ```
 
+# SmoothSprings Text
+
+```tsx
+import { motiono } from "motiono";
+
+const text = "Springs Animation!";
+const letters = text.split("");
+
+export default function SmoothSpringsText() {
+  return (
+    <section style={{ padding: "4rem", fontSize: "3rem", fontWeight: 700 }}>
+      <motiono.h1
+        style={{
+          display: "flex",
+          gap: "0.1em",
+          overflow: "hidden",
+          flexWrap: "wrap",
+        }}
+      >
+        {letters.map((char, i) => (
+          <motiono.span
+            key={i}
+            from={{ y: 40, opacity: 0 }}
+            to={{ y: 0, opacity: 1 }}
+            type="spring"
+            stiffness={90} // low stiffness = smooth
+            damping={20} // moderate damping = no overshoot
+            mass={0.8} // slight mass = natural motion
+            delay={i * 0.06} // stagger per character
+          >
+            {char === " " ? "\u00A0" : char}
+          </motiono.span>
+        ))}
+      </motiono.h1>
+    </section>
+  );
+}
+```
+
